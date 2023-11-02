@@ -1,33 +1,54 @@
-const account_Id = 11
-let account_Email = "moon123@gamil.com"
-var account_Password = "12345"
-account_City = "Rajshahi" // shouldn't follow
+/**
+ * for "use strict"
+ * 
+ * n = 3; // it's wrong
+ * using a variable, without declaring it, is not allowed.
+ */
+
+"use strict"; // treat all JS code as newer version
+
+// alert(3 + 3) // we are using nodejs, not browser
+
+// code should be readable
+console.log(3 + 3)
 
 
-// account_Id = 22 // const value change not allowed
-console.log(account_Id);
+let name = "Moon"  // string
+let age = 18  // number
+let isOkay = false  // boolean
 
 
-account_Email = "mkm12@gamil.com" // let value can change
-console.log(account_Email);
-
-
-account_Password = "1234" // var value can be change
-console.log(account_Password);
-
-
-
-// table
-console.table([account_Email, account_Id, account_City, account_Password])
+// how i can define the data type of variable
+console.log(typeof name);
+console.log(typeof null);
+console.log(typeof undefined);
 
 
 /*
-prefer not to use var.
-because of issue in block scope and functional scope
+null is a object. which represents primitive data types
+null value reffering absence of any object value and 
+
+but undefined is a data type
 */
 
-let account_State; 
-// it will show undefine. means no value assigned.
-// value not define
 
-console.table([account_State, account_Email, account_Id, account_Password, account_City])
+// A primitve data type specifics the size and type of variable values, and it has no additional methods.
+
+/*
+primitive data types:
+
+ number => 2 to power 53 (max)
+ bigInt => for very big number
+ string => ""
+ boolean => true/false
+ null => standalone value
+ undefined => no value define
+   -> null is not undefine. It's represent a empty value
+ symbol => unique
+*/
+
+/*
+non-primitive data types:
+
+ Object => Array, functions, null, etc.
+*/
