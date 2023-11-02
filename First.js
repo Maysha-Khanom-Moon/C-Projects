@@ -1,54 +1,90 @@
-/**
- * for "use strict"
- * 
- * n = 3; // it's wrong
- * using a variable, without declaring it, is not allowed.
- */
+let score = 33
 
-"use strict"; // treat all JS code as newer version
+// data type check: typeof / typeof()
+console.log(typeof score);
 
-// alert(3 + 3) // we are using nodejs, not browser
-
-// code should be readable
-console.log(3 + 3)
+let roll = "2103068"
+// or
+console.log(typeof(roll) + "\n");
 
 
-let name = "Moon"  // string
-let age = 18  // number
-let isOkay = false  // boolean
+// 
+let num_roll = Number(roll)
+console.log(typeof num_roll);
+console.log(num_roll + "\n")
 
 
-// how i can define the data type of variable
-console.log(typeof name);
+// if we try to make number of a non-numaric value
+let code = "123M"
+
+let num_code = Number(code)
+console.log(typeof num_code);
+
+console.log(num_code + "\n"); // NaN: Not a Number
+
+
+
+// null
+let temp = null
 console.log(typeof null);
-console.log(typeof undefined);
+console.log(typeof temp);
+
+let num_temp = Number(temp)
+console.log(typeof num_temp);
+console.log(num_temp + "\n"); 
+
+// as a number: null => 0
 
 
-/*
-null is a object. which represents primitive data types
-null value reffering absence of any object value and 
 
-but undefined is a data type
-*/
+// undefined
+let go = undefined
+console.log(typeof go)
+console.log(go)
+
+let num_go = Number(go);
+console.log(typeof num_go)
+console.log(num_go + "\n"); // NaN
 
 
-// A primitve data type specifics the size and type of variable values, and it has no additional methods.
 
-/*
-primitive data types:
+// boolean
+let check = true;
+console.log(typeof check)
+console.log(check)
 
- number => 2 to power 53 (max)
- bigInt => for very big number
- string => ""
- boolean => true/false
- null => standalone value
- undefined => no value define
-   -> null is not undefine. It's represent a empty value
- symbol => unique
-*/
+let num_check = Number(check)
+console.log(typeof num_check);
+console.log(num_check + "\n")
 
-/*
-non-primitive data types:
+// as a number: ture => 1, false => 0
 
- Object => Array, functions, null, etc.
-*/
+
+
+
+// number to boolean
+let Okay = 0;
+
+let isOkay = Boolean(Okay)
+console.log(typeof isOkay);
+console.log(isOkay + "\n")
+
+// without zero, every number reponse true
+
+
+
+// string to boolean
+let Ch = ""
+
+let isCh = Boolean(Ch)
+console.log(isCh + "\n");
+
+// without "" (empty string), others response true
+
+
+
+// string to number
+let num = -333
+
+let str_num = String(num)
+console.log(num);
