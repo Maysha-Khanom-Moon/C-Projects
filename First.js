@@ -1,90 +1,47 @@
-let score = 33
+// *********** Operations ***********
 
-// data type check: typeof / typeof()
-console.log(typeof score);
+let value = 3;
+let negValue = -value;
 
-let roll = "2103068"
-// or
-console.log(typeof(roll) + "\n");
+console.log(negValue);
 
+// power
+console.log(2**3);
 
-// 
-let num_roll = Number(roll)
-console.log(typeof num_roll);
-console.log(num_roll + "\n")
+// ramainder
+console.log(5%3 + "\n")
 
 
-// if we try to make number of a non-numaric value
-let code = "123M"
-
-let num_code = Number(code)
-console.log(typeof num_code);
-
-console.log(num_code + "\n"); // NaN: Not a Number
+// string addition
+let str1 = "hello"
+let str2 = " moon"
+console.log(str1 + str2 + "\n");
 
 
+// string and number addition
+console.log(1 + "2");
+console.log("1" + 2)
+console.log("1" + 2 + 3 + "\n"); 
+// string come first, so everyone behave like a string
 
-// null
-let temp = null
-console.log(typeof null);
-console.log(typeof temp);
+console.log(1 + 2 + "3");
+// firstly console thought everyone is number. So, he able to add those
+// and different data type add side by side.
 
-let num_temp = Number(temp)
-console.log(typeof num_temp);
-console.log(num_temp + "\n"); 
+// console works left to right
 
-// as a number: null => 0
-
-
-
-// undefined
-let go = undefined
-console.log(typeof go)
-console.log(go)
-
-let num_go = Number(go);
-console.log(typeof num_go)
-console.log(num_go + "\n"); // NaN
+// (*, /, %) --> more priority than (-, +)
 
 
+// avoid these types conversion
+console.log(+true); // +1 => 1
+console.log(-true); // -1
 
-// boolean
-let check = true;
-console.log(typeof check)
-console.log(check)
+console.log(+""); // +0 => 0
+console.log(-""); // -0
 
-let num_check = Number(check)
-console.log(typeof num_check);
-console.log(num_check + "\n")
+console.log(+false); // +0 => 0
+console.log(-false); // -0
 
-// as a number: ture => 1, false => 0
-
-
-
-
-// number to boolean
-let Okay = 0;
-
-let isOkay = Boolean(Okay)
-console.log(typeof isOkay);
-console.log(isOkay + "\n")
-
-// without zero, every number reponse true
-
-
-
-// string to boolean
-let Ch = ""
-
-let isCh = Boolean(Ch)
-console.log(isCh + "\n");
-
-// without "" (empty string), others response true
-
-
-
-// string to number
-let num = -333
-
-let str_num = String(num)
-console.log(num);
+// (-) act as a string
+// (+) act as a number
