@@ -1,47 +1,45 @@
-// *********** Operations ***********
-
-let value = 3;
-let negValue = -value;
-
-console.log(negValue);
-
-// power
-console.log(2**3);
-
-// ramainder
-console.log(5%3 + "\n")
+// console.log(2 > 1);
+// console.log(2 < 1);
+// console.log(2 >= 1);
+// console.log(2 <= 1);
+// console.log(2 == 1);
+// console.log(2 != 1);
 
 
-// string addition
-let str1 = "hello"
-let str2 = " moon"
-console.log(str1 + str2 + "\n");
+// comparison with different data types
+
+console.log("2" > 1);
+console.log("mn" > "mon")
 
 
-// string and number addition
-console.log(1 + "2");
-console.log("1" + 2)
-console.log("1" + 2 + 3 + "\n"); 
-// string come first, so everyone behave like a string
+// null
+console.log(null > 0); // flase
+console.log(null == 0); // false
+console.log(null >= 0); // true
 
-console.log(1 + 2 + "3");
-// firstly console thought everyone is number. So, he able to add those
-// and different data type add side by side.
-
-// console works left to right
-
-// (*, /, %) --> more priority than (-, +)
+// In javascript: comparison and equality check is different. So, they works differently
+// sometimes null => NaN or null => 0
+// so, null == 0 return false. But, null >= 0 return true
 
 
-// avoid these types conversion
-console.log(+true); // +1 => 1
-console.log(-true); // -1
+/*
+for "use strict" : equality checker => '==='
 
-console.log(+""); // +0 => 0
-console.log(-""); // -0
+actually its not only check the value, also check the datatype
+In this case, don't happen conversion automatically. 
 
-console.log(+false); // +0 => 0
-console.log(-false); // -0
+But, for '==': conversion happen automatically
+like: ("1" == 1) // true
+*/ 
 
-// (-) act as a string
-// (+) act as a number
+
+// undefined
+console.log(undefined > 0); // false
+console.log(undefined == 0); // false
+console.log(undefined >= 0); // false
+// for undefined, every comparison return false. Because there is no value assigned
+
+
+
+// Remember: skip these types comparison. (null and undefined)
+// because, it creates confusion
