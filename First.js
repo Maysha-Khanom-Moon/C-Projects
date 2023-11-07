@@ -1,41 +1,51 @@
-const score = 400
-console.log(score)
+// ++++++++++++++++++++++++ Dates +++++++++++++++++++++++++
 
-const balance = new Number(100)
-console.log(balance);
+let myDate = new Date()
+console.log(myDate);
+console.log(typeof myDate);
 
-console.log(balance.toString().length);
+console.log(myDate.toString());
+console.log(myDate.toDateString())
+console.log(myDate.toLocaleDateString());
+console.log(myDate.toLocaleString());
 
-console.log(balance.toFixed(2)); // how many digit i want to get after point
+// no formation
+// it's a array. so, month index start from 0
+let myCreatedDate = new Date(2023, 1, 23) // (year, month, day, hours, minutes, seconds, milliseconds)
+console.log(myCreatedDate.toDateString());
 
-const otherNum = 123.8966
-console.log(otherNum.toPrecision(8)) // precise value(focus on how many digit)
+// formation
+// in single digit case: month count from 1.
+let newDate = new Date("2023-11-07") // YY/MM/DD
+console.log(newDate.toLocaleString()); 
 
-// if precision digit less than integer part then it show as exponentially
-console.log(otherNum.toPrecision(2));
-
-const hundreds = 10000000
-console.log(hundreds.toLocaleString()); // US pattern
-console.log(hundreds.toLocaleString('en-IN') + '\n'); // IN pattern
+let newDate2 = new Date("01-07-2023") // DD/MM/YY 
+console.log(newDate2.toLocaleString());
 
 
+// ++++++++++++++ time stamp (mSec) +++++++++++++++
 
-// ++++++++++++++++++++++++++++++ Maths +++++++++++++++++++++++++++++++
-console.log(Math) // Object [Math] {}
-console.log(Math.abs(-4)); // 4
-console.log(Math.round(4.5)); // 5
-console.log(Math.ceil(8.1)); // 9
-console.log(Math.floor(6.9)); // 6
-console.log(Math.min(4, 5, 3, 2, 5, 4)); // 2
-console.log(Math.max(4, 5, 3, 2, 5, 4)); // 5
+let myTimeStamp = Date.now() // exact value of now
+console.log(myTimeStamp);
+console.log(myCreatedDate.getTime()); // we compare by this
 
-console.log(Math.random()); // get [0 - 1) (random value)
-console.log(Math.random() * 10); // get [0 - 10) (random value)
-console.log(Math.floor((Math.random() * 10) + 1)); // get [1 - 10) (random value)
+// convert to second
+console.log(Math.floor(Date.now() / 1000))
 
-// make a specific range
-// Math.random() * (max - min + 1) + min
-const min = 10
-const max = 20
 
-console.log(Math.floor(Math.random() * (max - min + 1) + min)); 
+// more
+let Date1 = new Date()
+console.log(Date1);
+console.log(Date1.getMonth()); // index of month
+console.log(Date1.getMonth() + 1); // num of month
+console.log(Date1.getDay()); // index start from: sunday = 0
+
+// `${newDate.getDay()} and the time`
+
+
+// ------------ Special ------------
+Date1.toLocaleString('default', {
+    weekday: "long",
+    timeZone: '//#region '
+})
+// to get all properties: ctrl + ' '
