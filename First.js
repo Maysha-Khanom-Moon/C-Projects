@@ -1,100 +1,41 @@
-const name = "moon"
-const repoCount = 15
+const score = 400
+console.log(score)
 
-console.log(name + repoCount + " value");
-console.log('\n', "good ", 'girl', '\n')
+const balance = new Number(100)
+console.log(balance);
 
-// concatenation by -->  '+' or ','
+console.log(balance.toString().length);
 
+console.log(balance.toFixed(2)); // how many digit i want to get after point
 
+const otherNum = 123.8966
+console.log(otherNum.toPrecision(8)) // precise value(focus on how many digit)
 
-// ************ Modern Way (string interpolation) ************
+// if precision digit less than integer part then it show as exponentially
+console.log(otherNum.toPrecision(2));
 
-// backtick => '``' 
-// `____ ${variable injection} ___`
-
-console.log(`hello! I am ${name}`);
-
-// -----------------------------------------------------------
-
-
-// string declaretion using object
-const gameName = new String("ninja Arashi")
-
-console.log(gameName[0]); // .charAt(0)
-console.log(gameName.charAt(0));
-
-console.log(gameName.__proto__); // all prototype included
-
-console.log(gameName.length);
-
-console.log(gameName.toUpperCase()); 
-
-console.log(gameName.indexOf('a')); // if not present --> return: -1
-
-
-const subGame = gameName.substring(0, 4); // substring
-// in substring (-)index defined as 0
-
-console.log(subGame) // ninj
-console.log(gameName.substring(-2, 4)); // ninj
-
-
-// **************** slice *****************
-
-// it also can work by negative index
-// negative index works from reverse array
-
-console.log(gameName.slice(0, 4)); // as like substring
-console.log(gameName.slice(-10, 4)); // nj
-
-/*
-The array index at which the slice is to begin. If negative, 
-this argument specifies a position measured from the end of the array. 
-
-That is, −1 indicates the last element, 
-         −2 indicates the next from the last element, and so on
-*/ 
-
-
-// ******************* trim ********************
-
-// trim(): stripped of whitespaces from both its beginning and end
-
-const uni = "   RUET   "
-console.log(uni.trim());
-
-// To return a new string with whitespace trimmed from just one end, 
-// use trimStart() or trimEnd().
-
-console.log(uni.trimEnd())
-console.log(uni.trimEnd) // [Function: trimEnd]
+const hundreds = 10000000
+console.log(hundreds.toLocaleString()); // US pattern
+console.log(hundreds.toLocaleString('en-IN') + '\n'); // IN pattern
 
 
 
+// ++++++++++++++++++++++++++++++ Maths +++++++++++++++++++++++++++++++
+console.log(Math) // Object [Math] {}
+console.log(Math.abs(-4)); // 4
+console.log(Math.round(4.5)); // 5
+console.log(Math.ceil(8.1)); // 9
+console.log(Math.floor(6.9)); // 6
+console.log(Math.min(4, 5, 3, 2, 5, 4)); // 2
+console.log(Math.max(4, 5, 3, 2, 5, 4)); // 5
 
-// ******************* replace ********************
+console.log(Math.random()); // get [0 - 1) (random value)
+console.log(Math.random() * 10); // get [0 - 10) (random value)
+console.log(Math.floor((Math.random() * 10) + 1)); // get [1 - 10) (random value)
 
-const url = "https://moon.com/moon%20khan"
-console.log(url.replace('moon', 'mkm')); // first 'moon' will replaced by 'mkm'
+// make a specific range
+// Math.random() * (max - min + 1) + min
+const min = 10
+const max = 20
 
-
-
-
-// ************* includes **************
-
-console.log(url.includes("mkm")); // false
-// check present or not
-
-
-
-// **************** split *****************
-
-const Name = "Maysha-Khanom-Moon"
-console.log(Name.split('-'));
-console.log(Name.split('-')[1]);
-
-
-// all works by copy
-
-// to know all prototype => goto inspect -> console 
+console.log(Math.floor(Math.random() * (max - min + 1) + min)); 
