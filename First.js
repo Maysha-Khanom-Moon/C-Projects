@@ -1,51 +1,62 @@
-// ++++++++++++++++++++++++ Dates +++++++++++++++++++++++++
+// Array
 
-let myDate = new Date()
-console.log(myDate);
-console.log(typeof myDate);
+/* 
+- in javascript: array dynamic 
+- index = 0 based
+- not associative
+- different type element can use in a single array
 
-console.log(myDate.toString());
-console.log(myDate.toDateString())
-console.log(myDate.toLocaleDateString());
-console.log(myDate.toLocaleString());
+- copy operation: make shallow copies(by reference)
 
-// no formation
-// it's a array. so, month index start from 0
-let myCreatedDate = new Date(2023, 1, 23) // (year, month, day, hours, minutes, seconds, milliseconds)
-console.log(myCreatedDate.toDateString());
+==> deep copy: by value
+*/
 
-// formation
-// in single digit case: month count from 1.
-let newDate = new Date("2023-11-07") // YY/MM/DD
-console.log(newDate.toLocaleString()); 
+// 1.
+const myArr = [0, 1, 2, 3, 4, 5, 6, true, "moon"]
+console.log(myArr);
+console.log(myArr[7])
 
-let newDate2 = new Date("01-07-2023") // DD/MM/YY 
-console.log(newDate2.toLocaleString());
+// 2.
+const myHeros = new Array(0, 1, 2, 3, 4, 4)
+console.log(myHeros);
 
+// push(value)
+myHeros.push(5); // insert after last index
+console.log(myHeros)
 
-// ++++++++++++++ time stamp (mSec) +++++++++++++++
+// pop()
+myHeros.pop(); // delete last element
+console.log(myHeros);
 
-let myTimeStamp = Date.now() // exact value of now
-console.log(myTimeStamp);
-console.log(myCreatedDate.getTime()); // we compare by this
+// ushift(value)
+myHeros.unshift(68); // insert before first index
+console.log(myHeros);
 
-// convert to second
-console.log(Math.floor(Date.now() / 1000))
+// shift()
+myHeros.shift(); // delete first element
+console.log(myHeros);
 
+// includes(value)
+console.log(myHeros.includes(1)); // present(true) or not(false)
 
-// more
-let Date1 = new Date()
-console.log(Date1);
-console.log(Date1.getMonth()); // index of month
-console.log(Date1.getMonth() + 1); // num of month
-console.log(Date1.getDay()); // index start from: sunday = 0
+// indexOf(value)
+console.log(myHeros.indexOf(3)); // if not present: index = -1
 
-// `${newDate.getDay()} and the time`
+// join()
+const newArr = myHeros.join()
+console.log(myHeros);
+console.log(newArr); // Binding + convert to string
+console.log(typeof newArr);
 
+// slice(first, last)
+console.log("A ", myHeros);
 
-// ------------ Special ------------
-Date1.toLocaleString('default', {
-    weekday: "long",
-    timeZone: '//#region '
-})
-// to get all properties: ctrl + ' '
+const myn1 = myHeros.slice(1, 3) // last index not included
+console.log(myn1);
+console.log("B ", myHeros); // don't remove that portion
+
+// splice(first, last)
+
+const myn2 = myHeros.splice(1, 3); // last index included
+console.log(myn2)
+console.log("C ", myHeros) // remove that portion
