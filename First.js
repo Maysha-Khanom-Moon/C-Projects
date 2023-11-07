@@ -1,62 +1,59 @@
-// Array
+const marvel = ["thor", "ironman", "spiderman"]
+const dc = ["superman", "flash", "batman"]
 
-/* 
-- in javascript: array dynamic 
-- index = 0 based
-- not associative
-- different type element can use in a single array
 
-- copy operation: make shallow copies(by reference)
+marvel.push(dc); // dc store at marvel
+console.log(marvel); // dc(array) become an element
+// it should avoid
 
-==> deep copy: by value
-*/
+console.log(marvel[3]);
 
-// 1.
-const myArr = [0, 1, 2, 3, 4, 5, 6, true, "moon"]
-console.log(myArr);
-console.log(myArr[7])
+marvel.pop()
+console.log(marvel);
 
-// 2.
-const myHeros = new Array(0, 1, 2, 3, 4, 4)
-console.log(myHeros);
+// --------- concat(value) ----------
+// add at the last but not assing 
+console.log(marvel.concat(dc)) // just element concat
+console.log(marvel); // not assign
+// so, need new array to concat 2 array's elements
 
-// push(value)
-myHeros.push(5); // insert after last index
-console.log(myHeros)
+const allHeros = marvel.concat(dc); // return array
+console.log(allHeros)
 
-// pop()
-myHeros.pop(); // delete last element
-console.log(myHeros);
 
-// ushift(value)
-myHeros.unshift(68); // insert before first index
-console.log(myHeros);
+// --------- spread: '...' ------------
+const allAgain = [...marvel, ...dc] 
+// spread all element, then add all of these and make a new array.
+console.log(allAgain);
 
-// shift()
-myHeros.shift(); // delete first element
-console.log(myHeros);
 
-// includes(value)
-console.log(myHeros.includes(1)); // present(true) or not(false)
+// ** spread is more preferable. Because at a time we can add the elements of more than two arrays. **
 
-// indexOf(value)
-console.log(myHeros.indexOf(3)); // if not present: index = -1
 
-// join()
-const newArr = myHeros.join()
-console.log(myHeros);
-console.log(newArr); // Binding + convert to string
-console.log(typeof newArr);
+// __________ Doing Fun: flat(depth) _____________
 
-// slice(first, last)
-console.log("A ", myHeros);
+const arr = [1, 2, 3, [4, 5, 6], 7, [6, 7, [4, 5]]]; // depth: 3
+console.log(arr);
 
-const myn1 = myHeros.slice(1, 3) // last index not included
-console.log(myn1);
-console.log("B ", myHeros); // don't remove that portion
+const useable_new_array = arr.flat(Infinity)
+// spread out and add all of these elements and make a single array.
+console.log(useable_new_array);
 
-// splice(first, last)
 
-const myn2 = myHeros.splice(1, 3); // last index included
-console.log(myn2)
-console.log("C ", myHeros) // remove that portion
+
+// ___________ Data scratching ____________
+
+console.log(Array.isArray("Maysha")) // array(true) or not(false)
+console.log(Array.from("Maysha")) // convert into array
+
+
+// ______ Interesting ______
+console.log(Array.from({name: "moon"})); // []
+// make sure: which part(keys or value) do you want to convert into array
+
+
+// multiple variables into array
+
+let n1 = 3, n2 = 5, n3 = 6;
+console.log(Array.of(n1, n2, n3))
+
