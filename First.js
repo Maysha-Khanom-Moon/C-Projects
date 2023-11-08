@@ -1,59 +1,67 @@
-const marvel = ["thor", "ironman", "spiderman"]
-const dc = ["superman", "flash", "batman"]
+// 1. by constructor - Object.create() ---> singleton
+
+//  _____________________ 2. object literals _____________________
+
+/*
+access: 
+      1. obj.key  --> key as a variable
+      2. obj[key]  --> key as a data(index)
+    => remain the datatype of key for no. 2 method
+*/ 
+
+const js_user = {
+    name: "Maysha", // name is a string key
+    age: 18, // key is a string
+    email: "mkm@gmail.com",
+    is_logged_in: false,
+    last_login_day: ["monday", 'saturday'],
+    "full_name": "Maysha Khanom Moon" // must follow access method 2
+}
+
+// we can define key in object. Although, in array key(index) = 0, 1, 2, ...
+// for both object and array: we define value
 
 
-marvel.push(dc); // dc store at marvel
-console.log(marvel); // dc(array) become an element
-// it should avoid
+console.log(js_user.age); // method 1
+console.log(js_user["age"]); // method 2
+console.log(js_user["full_name"]);
 
-console.log(marvel[3]);
+// ----- Symbol ------
 
-marvel.pop()
-console.log(marvel);
+const nam = Symbol("mkm") // or we can insert value also
+const obj = {
+    [nam]: "nam: moon",  // to use symbol, must have to define before.
+    // key is a Symbol // method 2 only
+    
+    nam: "moon", // key is a string // both method
 
-// --------- concat(value) ----------
-// add at the last but not assing 
-console.log(marvel.concat(dc)) // just element concat
-console.log(marvel); // not assign
-// so, need new array to concat 2 array's elements
+    age: 20,
 
-const allHeros = marvel.concat(dc); // return array
-console.log(allHeros)
+    1: 3 // // key is a number // method 2 only
+}
 
-
-// --------- spread: '...' ------------
-const allAgain = [...marvel, ...dc] 
-// spread all element, then add all of these and make a new array.
-console.log(allAgain);
-
-
-// ** spread is more preferable. Because at a time we can add the elements of more than two arrays. **
+console.log(obj.nam); // "moon"
+console.log(obj[nam]); // "nam: moon"
+console.log(obj["nam"]); // "moon"
+console.log(obj[1]); // 3
 
 
-// __________ Doing Fun: flat(depth) _____________
+// change the key values
+obj.age = 21
 
-const arr = [1, 2, 3, [4, 5, 6], 7, [6, 7, [4, 5]]]; // depth: 3
-console.log(arr);
+// make is freeze
+Object.freeze(obj)
+// new any change will not assigned
 
-const useable_new_array = arr.flat(Infinity)
-// spread out and add all of these elements and make a single array.
-console.log(useable_new_array);
+obj.age = 44 // no change. because its already freeze
+console.log(obj)
+console.table(obj)
 
+js_user.greeting = function() {
+    console.log(`Hello Js User, ${this.name}`); // to call own obj, use this
+}
 
+console.log(js_user.greeting()); // return values
+console.log(js_user.greeting) // return reference
 
-// ___________ Data scratching ____________
-
-console.log(Array.isArray("Maysha")) // array(true) or not(false)
-console.log(Array.from("Maysha")) // convert into array
-
-
-// ______ Interesting ______
-console.log(Array.from({name: "moon"})); // []
-// make sure: which part(keys or value) do you want to convert into array
-
-
-// multiple variables into array
-
-let n1 = 3, n2 = 5, n3 = 6;
-console.log(Array.of(n1, n2, n3))
-
+// we have 2 method. so mostly use dot '.' method
