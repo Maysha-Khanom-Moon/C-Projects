@@ -1,67 +1,113 @@
-// 1. by constructor - Object.create() ---> singleton
+const tinderUser1 = new Object() // by constructor || singleton || single instance
 
-//  _____________________ 2. object literals _____________________
+const user = {} // by object literals || non-singleton
 
-/*
-access: 
-      1. obj.key  --> key as a variable
-      2. obj[key]  --> key as a data(index)
-    => remain the datatype of key for no. 2 method
-*/ 
+console.log(tinderUser1);
+console.log(user); // both same // {}
 
-const js_user = {
-    name: "Maysha", // name is a string key
-    age: 18, // key is a string
+// .log priority for object keys: number --> string --> symbol |then| serial wise
+
+user.id = "21t"
+user.name = "mkm"
+
+console.log(user.id);
+console.log(user["name"] + '\n')
+
+
+// nesting 
+const student = {
     email: "mkm@gmail.com",
-    is_logged_in: false,
-    last_login_day: ["monday", 'saturday'],
-    "full_name": "Maysha Khanom Moon" // must follow access method 2
+    fullname: {
+        studentFullName: {
+            fisrtName: "Mk",
+            lastName: "Moon"
+        },
+        
+        father: "KHKM"
+    }
 }
 
-// we can define key in object. Although, in array key(index) = 0, 1, 2, ...
-// for both object and array: we define value
+console.log(student.fullname.studentFullName)
+console.table(student["fullname"])
+console.log(student["fullname"]);
 
 
-console.log(js_user.age); // method 1
-console.log(js_user["age"]); // method 2
-console.log(js_user["full_name"]);
+// optional chaining: '?'
+// if i call an object property that doesn't exist, which triggers an error (because of undefined or missing value in api or database)
+// for this, just insert '?' between the property name and the period between the next property
 
-// ----- Symbol ------
+console.log(student.fullname?.studentFullName) // exist // in general case
+console.log(student.id?.fullname) // not exist // undefined
 
-const nam = Symbol("mkm") // or we can insert value also
-const obj = {
-    [nam]: "nam: moon",  // to use symbol, must have to define before.
-    // key is a Symbol // method 2 only
-    
-    nam: "moon", // key is a string // both method
 
-    age: 20,
+// object merge works like an array
+const obj1 = {1: "a", 2: "b"}
+const obj2 = {3: "aa", 4: "bb"}
 
-    1: 3 // // key is a number // method 2 only
+const obj3 = {obj1, obj2} // in obj3 object --> obj1 and obj2 are including as a object
+console.log(obj3);
+
+
+// ----------- Object.assign() -------------
+
+const obj5 = Object.assign(obj1, obj2) // elements of obj2 are assigned(not store) into obj1 And then obj1 store into obj5
+// obj1 --> target, obj2 --> source
+console.log(obj5) 
+
+const obj4 = Object.assign({}, obj1, obj2) // all element of obj1 and obj2 are assigned into --> {} And then {} store into obj4
+// {} --> target. But it's optional, but it's standard
+console.log(obj4);
+
+
+// _________________ spread '...' ________________
+const obj = {...obj1, ...obj2} // spreads all element. then insert all of these values at obj
+console.log(obj);
+
+
+
+// ______________________ Objects in Database _______________________
+
+// info came as array of objects
+const arr = [
+    user,
+    student,
+    obj,
+    obj1,
+    obj2,
+    obj3,
+    obj4,
+    obj5
+]
+
+console.log(arr[1].email);
+
+const userAgain = {
+    name: "moon",
+    id: 11,
+    color: "blue",
+    class: 13
 }
 
-console.log(obj.nam); // "moon"
-console.log(obj[nam]); // "nam: moon"
-console.log(obj["nam"]); // "moon"
-console.log(obj[1]); // 3
+// _______________________ Object.keys() _________________________
+// we can make an array of keys
+const userArr = Object.keys(userAgain)
+console.log(userArr);
+console.log(userArr[2]); // return the key, not the value of key
 
 
-// change the key values
-obj.age = 21
+// _______________________ Object.values() ______________________
+// we can make an array of values
+console.log(Object.values(userAgain));
 
-// make is freeze
-Object.freeze(obj)
-// new any change will not assigned
 
-obj.age = 44 // no change. because its already freeze
-console.log(obj)
-console.table(obj)
+// _____________________ Object.entries() _______________________
+// firstly --> make small array for keys including value
+// then make a big array by these small arrays
+console.log(Object.entries(userAgain))
 
-js_user.greeting = function() {
-    console.log(`Hello Js User, ${this.name}`); // to call own obj, use this
-}
 
-console.log(js_user.greeting()); // return values
-console.log(js_user.greeting) // return reference
 
-// we have 2 method. so mostly use dot '.' method
+// _______________ .hasOwnProperty('property name') _______________
+// check the property exist or not
+console.log(userAgain.hasOwnProperty('account')); // false
+console.log(userAgain.hasOwnProperty('id')); // ture
