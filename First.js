@@ -1,83 +1,79 @@
-// ___________________ Functions ___________________
+// ____________________________ Scope ____________________________
 
-function sayName() {
-    console.log("moon");
+let a = 10
+const b = 20
+var c = 30
+
+console.log(a);
+console.log(b);
+console.log(c);
+
+
+// scope: '{}' 
+// '{}' --> function, array
+// in object '{}' works for object declaration
+
+
+if (true) {
+    let A = 10
+    const B = 10
+    var C = 30
 }
 
-// sayName: reference
-// (): execute
-sayName // just reference. no execution
-sayName() // reference and do execution
+// console.log(A); // block scope
+// console.log(B); // block scope
+
+console.log(C); // global scope
+
+// var ---> global. That's why we avoid var
 
 
-function addTwo(num1, num2) {
-    return num1 + num2
-    let ans = num1 + num2 // not able to execute
+// ______________ let, const __________________
+// let, const --> block scope
+
+// m is a golbal variable
+// so, m can be access from any where
+let m = 9
+my()
+function my() {
+    let n = 12 // n is a local variable // it's scope just my() function
+    console.log(m);
+    console.log(n);
 }
 
-console.log(addTwo()) // NaN // no argument
-console.log(addTwo(2, 3));
-
-// danger
-console.log(addTwo(2, "a")); // 2a // for lake of argument specification
-
-
-// in conditional: undefined & null = false
+// at code environment(node) and in inspect(console) ---> scopes are different
 
 
 
-function temp(num) {
-    return num;
+
+// ------------------ nested scope by function ------------------
+
+// In javaScript, always execute line by line
+
+// function works by call stack
+
+function one() {
+    const username = "mkm"
+
+    function two() {
+        const website = 'youtube'
+        console.log(username)
+    }
+
+//  console.log(website); // out of the scope
+    two()
 }
-console.log(temp(44, 33, 49));
+one()
 
-// rest operator '...'
-function calculatePrice(...num) {
-    return num
-}
-
-console.log(calculatePrice(44, 33, 49)); // pass as an array
-
-
-//-------
-function temp1(val1, val2, ...num) {
-    return num;
-}
-
-console.log(temp1(11, 42, 13, 43));
-
-
-// function --> '...' (rest) 
-// object/array --> '...' (spread)
+// array scope also works like function scope
 
 
 
-// --------------- Object pass -----------------
-const user = {
-    email: "mkm@gmail.com",
-    price: 234
+// ++++++++++++++++++++++ interesting ++++++++++++++++++++++++
+
+// expresion. function works like variable
+const addOne = function(num) {
+    return num + 1
 }
 
-function handleObject(anyobject) {
-    console.log(`Username is ${anyobject.email} and price is ${anyobject.price}`);
-}
-
-// 1. by making object
-handleObject(user)
-
-// 2. without making object before
-handleObject({
-    email:"moon@google.com",
-    price: 234,
-    color: "blue"
-})
-
-
-// --------- array pass -------------
-const value = [34, 34, 3, 5, 4]
-
-function returnArray(getArray) {
-    return getArray[3]
-}
-
-console.log(returnArray(value));
+console.log(addOne(5));
