@@ -1,134 +1,61 @@
-// 'this' keyword
-// talking about current context
-
-// ________________ 'this' at object ________________
-
-const user = {
-    username: "moon",
-    price: 999,
-
-    welcomeMessage: function() {
-        console.log(`${this.username}, welcome to website`); // 'this' --> reffer current context
-        
-        // ---------- important --------------
-        console.log(this) // it show the current contexts
-    }
-
-}
-
-user.welcomeMessage() // default
-
-user.username = "mkm"
-user.welcomeMessage() // after change the context(value)
-
-// ---------------- important -----------------
-console.log(this);
-
-// At stand alone compiler(like: node) return '{}' --> 'empty object'
-// At inspect(console) return --> 'window' and all prototypes of this
-// At browser ---> globar object is 'window'
-
-
-
-
-// ++++++++++++++++++++ 'this' --> at function ++++++++++++++++
-
-function chai() {
-    let user = 'moon'
-    console.log(this.user); // undefined
-    // so, 'this' doesn't work properly at function
-
-    console.log(this); // all of internal info and prototype
-}
-
-chai()
-
-// ******** 'this' does works properly at object ********
-
-
-// _______________________ Normal function --> 'this' ________________________
-const water = function () {
-    let user = "mkm"
-    console.log(this.user); // undefined
-    console.log(this); // show all info and properties
-}
-
-water()
-
-// ______________________ Arrow function --> 'this' _______________________
-const ice = () => {
-    let user = "maysha"
-    console.log(this.user); // undefined
-    console.log(this); // show all info and properties
-}
-
-// ****** 'this' --> works as same as both of normal and arrow function ******
-
-
-
-// ------------------ All about arrow function ---------------
-
-// func_name = () => {}
-
-// 1. explicit return (need to use 'return' key)
-const addTwo = (num1, num2) => {
-    return num1 + num2;
-}
-
-console.log(addTwo(3, 4));
-
-// 2. implicit return (no need to use 'return' key)
-// works --> if there is one return statement
-const product = (num1, num2) => (num1 * num2) // num1 * num2 // '()' use more preferred
-
-console.log(product(4, 5));
-
-// at implicit arrow function ---> no need 'return' key, if we use '()' or 'nothing
-//                            ---> need 'return' key, if we use '{}'
-
-
-// **************** exception for object *****************
-// for object return must have to use implicit return with '{}'. And also must wrap into '()'
-const name = () => ({user: "moon"})
-console.log(name());
-
-
-
-// ************************************************************************************************//
-
-// Immediately Invoked Function Expressions (IIFE)
-
-// 1. normal func
-
-(function chai() {
-    console.log(`DB CONNECTED`);
-}) (); 
-// here most important thing is ';' ---> it means the END of this IIFEs.
-// if we don't put ';' --> it can't do anything which are present after this IIFEs.
-
-// with 'chai' name, there is another function. But since this 'chai' function has own spode. Which hide from global scope
+// ********** How does javascript works behind the scene **********
 
 /*
-one of the good ways to hide data from the global scope as it creates its own scope. 
-to avoid unnecessary conflicts like duplicate variables and functions in the global scope.
+ ------------------ Javascript Execution context -------------------
+#how to run and execute.
 
-// prevent pollution of the global JS scope
+  # code ---> global EC(execution context) put into ---> 'this'
+
+  # execution type:
+        1. Global Execution Context / Global environment 
+        2. Function Execution Context
+        3. Eval Execution Context
+            --> eval is object of global execution context.
+
+  # execution phase:
+        1. Memory Creation Phase / creation phase
+        2. Execution Phase
+
+    => creation phase: only allocate storage at memory for variable
+    => execution phase: all processes doing at this
+
+  # js ---> single threaded
+*/ 
+
+
+/*
+1.  let val1 = 10
+2.  let val2 = 5
+3.  function addNum(num1, num2) {
+4.      let total = num1 + num2
+5.      return total
+6.  }
+7.  let result1 = addNum(val1, val2)
+8.  let result2 = addNum(10, 2)
 */
 
-// 2. arrow function
-(() => {
-    console.log("DB CONNECTED TWO");
-}) ();
+/*
+ # All steps:
+    1. global execution / environment ---> 'this' alocation
+    2. memory phase ---> 
+                        1. val1 --> undefined
+                        2. val2 --> undefined
+                        3. addNum --> defination
+                        7. result1 --> undefined
+                        8. result2 --> undefined
+    3. Execution phase --->
+                        1. val1 <-- 10
+                        2. val2 <-- 5
+                        3. addNum <-- new execution context
+                                    --> new variable environment + execution thread 
+                                        memory phase: 
+                                                    num1 --> undefined
+                                                    num2 --> undefined
+                                                    total --> undefined                
+                                                    --> then total return the value to global execution context
+                                                    --> then it delete. just like stack call
+                        7. result1 <-- 15
+                        8. result2 <-- 12 (before result getting, again works phase 3)
 
-// 3. arrow another
-(chai = () => {
-    console.log("DB CONNECTED THREE");
-}) ();
-
-// 4. with parameter
-((age) => {
-    console.log("age: ", age);
-}) (21)
-
-// after this, it not capable to execute any more context.
-// because, we forgot to put ';' after '()'
+ # to understant call stack(memory): goto inspect --> source --> breakpoint --> call stack
+*/          
