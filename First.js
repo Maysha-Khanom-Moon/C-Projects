@@ -1,113 +1,95 @@
-// -------------------- Control flow ---------------------
+// for loop
+/*
+for(initialization, condition, update) {
 
-// 1. if statement
-// '<', '>', '<=', '>=', '==', '!=', '===', '!=='
+}
 
-//  '='  --> assign
-// '=='  --> it's just check value. 
-// '===' --> it's check value and also data type
+update --> increment or decrement
+*/
 
+// without scope its process just one statement
+for(let i = 1; i <= 5; i++)
+    console.log(i);
 
-console.log(2 == '2'); // true
-console.log(2 === '2'); // false
+// without scope if i want to process multiple statement then put ','
+for(let i = 1; i <= 3; i++)
+    console.log(i * 2),
+    console.log(`${i * 4} \n`);
 
-const temp = 63
+let arr = [10, 32, 43]
+// with scope
+for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+}
+    
 
-// without scope --> we just can process one statement
-if (temp < 50) 
-    console.log("less than 50")
-    console.log("no include in if scope \n")
+// nested loop
+let arr2 = new Array (3, 4, 5)
+for(let i = 0; i<arr2.length; i++) {
+    console.log(i+1);
+    for(let k = 1; k <= 3; k++)
+        console.log("hello");
+    console.log('\n'); 
+    // here 2 endline will count. 
+    // one for console.log() and another one for '\n'
+}
 
-// if we want to process multiple statement without scope --> used ','
-if (temp < 100) 
-    console.log("less than 100"),
-    console.log(`it's ${temp} \n`);
-
-if(temp === 61)
-    console.log(`61 equal to ${temp}`);
-
-else 
-    console.log(`61 not equal to ${temp}`);
-
-
-// logical operator: '&&', '||', '!'
-// '&&' --> true: every condition has to be true
-// '||' --> ture: minimum one condition has to be true
-
-if(2==2 && 2 == 5) // false
-    console.log(true);
-else if(2 == 2 || 2 == 5)
-    console.log("half true");
-else
-    console.log("total wrong");
-
-if(2==2 || 2 == 5) // true
-    console.log(true)
+arr2.push(3)
+console.log(arr2);
 
 
-// __________ switch(key) __________
-switch(3) {
-    case 1: console.log(`hello`);
-            break;
-    case 3: console.log(`moon`)
-            break
-    default:
-            console.log(`smile`);
-            break
+// _______________ break-continue ______________
+
+// if i get 5 then break the loop
+for(let i = 1; i<=20; i++)
+    if(i === 5) {
+        console.log(`detected 5 \n`);
+        break // go out of the loop
+    }
+    else
+        console.log(i);
+
+
+// if i want to print 1-20 without multiply of 3 and 4
+for(let i = 1; i <= 20; i++) 
+    if(i % 3 && i % 4)
+        console.log(i);
+    else
+        continue // just skip this statement but stay in the loop
+console.log(); // one line break
+
+
+// ________________ while, do-while ________________
+
+/*
+initialization
+while(condition) {
+
+    update
+}
+*/
+let i = 1
+while (i <= 5) {
+    console.log(i);
+    i++
 }
 
 
-// ------------- extra ---------------
-// falsy ----> false
-// truthy ---> true
-
-// flasy: false, 0, -0, BigInt 0n, empty string(""), null, undefined, NaN
-// truthy:  ture, "0", 'false', space " ", empty object '{}', empty array '[]', function(){}, and others all
-
-
 /*
----- empty array check -----
-if (array.length === 0) 
+-------- do-while ---------
+initialization
+do {
+
+} while(condition)
+
+// firstly do the work, then check the condition
+
+----------- execption ------------
+minimum one time loop will be work if condition true or not.
 */
 
-
-/*
------ empty object check -----
-if (Object.keys(object_name).length === 0)
-
-// Object.keys(object_name) --> array of keys
-*/
-
-
-
-/*   ***************--- '??' ---***************
-The nullish coalescing (??) operator is a logical operator 
-that returns its right-hand side operand when its left-hand side operand 
-is null or undefined, and otherwise returns its left-hand side operand
-
-let val1;
-val1 = 5 ?? 10 // 5 will assigned
-
-val1 = null ?? 10 // 10 will assigned
-
-val1 = undefined ?? 10 // 10 will assinged
-
-val1 = undefined ?? null // null
-
-val1 = null ?? undefined // undefined
-
-val1 = null ?? undefined ?? 10 ?? 40 // 10 will assigned
-*/
-console.log(null ?? undefined);
-// ________________________ remember ______________________
-console.log(0 ?? 10) // at this point --> '0' is a number
-
-
-/*
-________ Ternary Operator: '?' ________
-condition ? true : false
-*/
-
-console.log((2<4) ? "wrong" : "right");
-
-(`moon` == 'moon') ? console.log(`yes`) : console.log('no');
+let k = 1
+do {
+    console.log(`${k} less then 0`);
+    k++;
+} while(k < 0)
