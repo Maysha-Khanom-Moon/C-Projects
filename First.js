@@ -1,178 +1,149 @@
-// iterate --> array, object, string
-
 /*
-************* for-of *************
-for-of ---> used by iterates
-
-=> just return value. not iterates(index)
-
-for (const/let value of obj/arr) {
-    statements
-}
+    ----------- Maps (data structure) --------------
+=> all basics at commit: 'for-of || for-in || forEach --> arr, obj, func'
 */
-
-const arr = [11, 22, 33, 44]
-
-for (const i of arr) {
-    console.log(i);
-}
-
-const greetings = "hello world" // string
-for (const greet of greetings) {
-    console.log(`Each char is ${greet}`);
-}
-console.log()
-
-/*
- ------------ Maps -------------
-(key, value)
-just set unique key values
-it check by keys not compare values
-it's not sorted. First in means first print/process
-*/
-
-const map = new Map()
-map.set('BNG', "Bangladesh")
-map.set('IN', "India")
-map.set('USA', "United states of America")
-map.set('Fr', "France")
-
-for (const key of map) {
-    console.log(key); // print individually as a pair
-}
-
-map.set('IN', "Bharat") // new value alocate at existing key 'IN'
-// duplicate keys not allowed.
-
-// but duplicate value can be allocat
-map.set('Tiger', "Bangladesh")
-
-for (const [key, value] of map) {
-    console.log(key, ' :- ', value) // we can access key and value individually
-}
-
-
-
-// ______________ object in for-of ______________
-const myObj = {
-    calss1: 'cse',
-    class2: 'eee',
-    class3: 'me',
-    class4: 'civil'
-}
-
-// for (const key of myObj) {
-//     console.log(key); // myObj is not iterable
-// }
-// ========> object interation not works on 'for-of' loop 
-
 
 /* 
-____________ for object: for-in loop ___________
+______________ filter ______________
 
-=> basically it works by (0, 1, 2, 3, 4, ...) iteration(indexing)
+variable = name.filter( funtion (item) condition(for return values))
 
-although it works for array and string
-
-but it just give iterate or key not value
-
-for-in loop ---> does not works at map
-because at map --> there is no (0, 1, 2, 3, ...) type iteration
-
-
-for(const/let index in obj/arr) {
-    statements
-}
-*/
-
-for (const i in myObj) {
-    console.log(`${i} : ${myObj[i]}`);
-}
-
-for(let i in map) {
-    console.log(i);
-}
-
-
-/*
- +++++++++++++++++++++++ forEach +++++++++++++++++++++++
-
-if used by call back function. which function has no name. just work by value as parameter
-
-=> usually this function has one parameter. which call the values
-   but we can user multiple parameter.
-  ---> item(value), index(0, 1, 2, ...), array(whole array)
-
-==> ["", "", "", ...]
-==> [{}, {}, {}, ...]
+==> filter: just like forEach but it return something
+            also it just return, not any statement carry
 
 */
-const arr2 = [11, 22, 33, 44]
+const num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-// 1. normal function
-arr2.forEach(function (val) {
-    console.log(val);
+// 1. implicit return. no need to use 'return' key
+// ---------- no scope '{}' ----------
+// => return item which follows the condition
+let newNum = num.filter( (n) => n < 4 )
+console.log(newNum);
+
+// 2. explicit return. need to use 'return' key
+// ---------- with scope '{}' -----------
+newNum = num.filter( function(n) {
+    return n > 5
 } )
+console.log(newNum);
 
-// 2. arrow function
-arr2.forEach((val) => {
-    console.log(val);
+
+// ------------------ alternative way for filter by using forEach ---------------
+
+newNum = []
+
+num.forEach( (n) => {
+    if (n > 4) 
+        newNum.push(n)
+
 } )
-console.log()
-
-// 3. outer function
-function print(item) {
-    console.log(item);
-}
-console.log();
+console.log(newNum);
 
 
-// ----------- 3 parameter (item, index, array) -------------
-arr2.forEach( (item, index, array) => {
-    console.log(item, index, array);
-} )
 
-
-// ----------- 2 parameter (item, index) ------------
-arr2.forEach( (value, i) => {
-    console.log(value, i);
-} )
-
-
-// ___________ onject in array ___________
-const myCode = [
+// ----------------- filter in database ------------------
+const books = [
     {
-        language: "javaScript",
-        file: "js"
+        title: 'book1', genre: 'fiction', publish: 1981, edition: 2004
     },
     {
-        language: "java",
-        file: "java"
+        title: 'book2', genre: 'non-fiction', publish: 1992, edition: 2008
     },
     {
-        language: "python",
-        file: "py"
+        title: 'book3', genre: 'history', publish: 1999, edition: 2007
     },
     {
-    
+        title: 'book4', genre: 'non-fiction', pulbish: 1989, edition: 2010
+    },
+    {
+        title: 'book5', genre: 'science', publish: 2009, edition: 2014
+    },
+    {
+        title: 'book6', genre: 'fiction', publish: 1987, editon: 2010
+    },
+    {
+        title: 'book7', genre: 'history', publish: 1986, edition: 1996
+    },
+    {
+        title: 'book8', genre: 'science', publish: 2011, editon: 2016
+    },
+    {
+        title: 'book9', genre: 'non-fiction', publish: 1981, editon: 1989
     }
 ]
 
-// just item
-myCode.forEach( (item) => {
-    console.log(item);
-    console.log(item.file);
-} )
+// 1. without scope: no 'return' key
+let userBooks = books.filter( (bk) => bk.genre == 'history' )
 
-// item, index, object
-myCode.forEach( (item, i, obj) => {
-    console.log(item, i, obj);
-} )
+console.log(userBooks);
 
-// store at variable
-// forEach never return anything
-const values = myCode.forEach( (item) => {
-    console.log(item);
-} )
-console.log();
-console.log(values); // undefined
+// 2. with scope: 'return' key use
+userBooks = books.filter( (bk) => { return bk.publish >= 2000 } )
+console.log(userBooks);
+
+// 3. with multiple condition
+userBooks = books.filter( (bk) => bk.genre == 'history' && bk.publish >= 1995)
+console.log(userBooks);
+
+
+/*
+_______________________ .map method ___________________________
+
+=> it also a call back function
+variable = name.map( (parameter) => processed parameter return)
+
+=> .map --> just like filter with customized return value of parameter
+*/
+let myNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+// add 10 --> each of element
+// 1. implicit return --> no scope --> no need to use 'return' key
+let newMyNum = myNum.map( (num) => num + 10)
+console.log(newMyNum);
+
+// 2. explicit return --> with scope --> need to use 'return' key
+newMyNum = newMyNum.map( (num) => { return num - 5 } )
+console.log(newMyNum);
+
+// 3. multiple map (chaining)
+newMyNum = myNum.map( (num) => num * 10 ).map( (num) => num - 1).filter( (num) => num >= 40)
+console.log(newMyNum);
+
+
+
+/*
+ _______________________________ Reduce ________________________________
+
+ // 1. arrow function
+ const sumWithInitial = array1.reduce(
+  (accumulator, currentValue) => accumulator + currentValue,
+  initialValue,
+);
+=> currentValue --> element(value) of array
+
+ // 2. normal function
+ const sumWithInitial = array1.reduce(
+  (accumulator, currentValue) {
+    return accumulator + currentValue
+  } , 
+  initialValue);
+*/
+
+myNum = [1, 2, 3]
+
+// 1. normal function
+let myTotal = myNum.reduce(function (acc, curVal) {
+    console.log(`acc: ${acc} and curVal: ${curVal}`);
+    return acc + curVal
+}, 0 )
+console.log(myTotal);
+
+// 2. arrow function
+myTotal = myNum.reduce( (acc, curVal) => acc + curVal, 0)
+console.log(myTotal);
+
+
+
+/************************************************/
+/* ------------ JS part-1 Complete ------------ */
+/************************************************/
