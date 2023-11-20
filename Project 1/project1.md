@@ -1,7 +1,7 @@
 # projects related to DOM
 
 ## Project link
-[click here] (https://stackblitz.com/edit/dom-project-chaiaurcode?file=index.html)
+[click here](https://stackblitz.com/edit/dom-project-chaiaurcode?file=index.html)
 
 # solution code
 
@@ -68,3 +68,18 @@ form.addEventListener('submit', function (e) {
   }
 });
 ``````
+
+## project 3
+```javascript
+const clock = document.getElementById('clock');
+
+// document.querySelector('#clock')
+
+setInterval(function () {
+  let date = new Date();
+  clock.innerHTML = date.toLocaleTimeString();
+}, 1000);
+// 1000 msec
+
+
+```
