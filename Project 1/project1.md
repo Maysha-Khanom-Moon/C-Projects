@@ -7,7 +7,7 @@
 
 ## project 1
 
-``````
+```javascript
 const buttons = document.querySelectorAll('.button');
 const body = document.querySelector('body');
 
@@ -31,11 +31,11 @@ buttons.forEach(function (button) {
     }
   });
 });
-``````
+```
 
 ## project 2
 
-``````
+```javascript
 const form = document.querySelector('form');
 
 // this usecase will give you empty
@@ -67,7 +67,7 @@ form.addEventListener('submit', function (e) {
     }
   }
 });
-``````
+```
 
 ## project 3
 ```javascript
